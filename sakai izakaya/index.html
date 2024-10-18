@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>居酒屋・酒居　帯広店</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="酒居ロゴ正方形.jpg">
+    
+
+</head>
+<body>
+    <h1>～居酒屋酒居　帯広店～</h1>
+    <div class=container>
+        <div class="clock">
+            <h3 id="big">現在の時刻は</h3>   
+         
+            <p>
+                <span id="show_hour" style="font-size: 59px;"></span>時
+                <span id="show_minute" style="font-size: 59px;"></span>分
+                <span id="show_second" style="font-size: 59px;"></span>秒です
+ 
+            </p>
+        </div>
+    </div>
+    <script src="style.js"></script> <img src="izakaya.png">
+
+    <style>
+      #status {
+          color: #2fa9f0;
+          font-weight: bold;
+          background-color: #e1eee2;
+
+      }
+
+      #big {
+        font-size: 30px;
+      }
+  </style>
+
+
+<h1>現在の営業状況</h1>
+<div id="status">判定中...</div>
+
+<h1><script>
+  // 営業時間設定
+  const businessHours = {
+      weekdays: {
+          lunchStart: 11, // 11:00
+          lunchEnd: 14,   // 14:00
+          dinnerStart: 17, // 17:00
+          dinnerEnd: 24   // 00:00 (24:00)
+      },
+      closedDay: 3 // 定休日 水曜日 (0=日, 1=月, ..., 6=土)
+  };
+
+  function checkBusinessStatus() {
+      const now = new Date();
+      const currentDay = now.getDay();  // 曜日 (0=日, 1=月, ..., 6=土)
+      const currentHour = now.getHours();  // 時間
+
+      // 定休日チェック
+      if (currentDay === businessHours.closedDay) {
+          return "定休日";
+      }
+
+      // ランチ営業時間チェック
+      if (currentHour >= businessHours.weekdays.lunchStart && currentHour < businessHours.weekdays.lunchEnd) {
+          return "営業中（ランチ）";
+      }
+
+      // ディナー営業時間チェック
+      if (currentHour >= businessHours.weekdays.dinnerStart && currentHour < businessHours.weekdays.dinnerEnd) {
+          return "営業中（ディナー）";
+      }
+
+      // 営業時間外
+      return "準備中";
+  }
+
+  // 営業状況を表示
+  document.getElementById("status").innerText = checkBusinessStatus();
+
+  // 1時間ごとに更新 (3600000ミリ秒 = 1時間)
+  setInterval(() => {
+      document.getElementById("status").innerText = checkBusinessStatus();
+  }, 3600000);
+
+</script></body></h1>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2>居酒屋・酒居</h2>
+
+<a href="index.html" class="btn btn-svg">
+    <svg>
+      <rect x="29" y="10" rx="0" fill="none" width=150 height="35"></rect>
+    </svg>
+    <span><green>ホーム</green></span>
+  </a>
+
+  <a href="sub01.html" class="btn btn-svg">
+    <svg>
+      <rect x="29" y="10" rx="0" fill="none" width=150 height="35"></rect>
+    </svg>
+    <span><green>予約</green></span>
+  </a>
+  <br>居酒屋 焼鳥・串焼き 和食
+ディナー：2500円　ランチ：700円
+帯広駅 徒歩10分
+ 水曜日
+テイクアウト可
+
+  <br>
+  <br>
+  <br><h2>～この居酒屋について～</h2>
+  <br>帯広市にあるお店。女性店主の人柄を反映したようなアットホームな店内は、懐かしさと落ち着きを同時に感じさせ、ゆったりとリラックスしてくつろげます。メニューは和食を中心とした多彩な創作料理が盛りだくさん。月替りのランチや一品メニューなど、十勝の新鮮素材や自家栽培の野菜を使っているので、旬の味をたっぷり堪能できます。また、相談次第でメニュー表にないものも作ってくれるのもうれしいサービス。居酒屋だけあって日本酒などの種類も豊富で、飲みたい派にもおすすめです。そのほか、帯広の夏の風物詩、勝毎花火大会の会場にほど近いのも魅力的。地元のリピーターも、観光がてらにふらりと訪れても楽しめます。
+<br>
+<br>
+<br><h2>～クチコミ～</h2>
+<img src="スクリーンショット 2024-10-06 082757.png" alt="">※スクショです
+<br>
+<br><h2>～これだけは食べてほしい　ベスト3～</h2>
+<br><img src="0006016438F20_340x255.webp"><h3>外はカリッ、中はモチモチ『生地もソースも自家製ピッツア』</h3>
+<h4>店主がすべて手づくりで仕上げた一品。フレッシュトマトのソースが絶妙な美味しさです。</h4>
+
+<br>
+<br>
+<br>
+<br><img src="maguroyukke.webp"><h3>マグロとアボカドのユッケ丼</h3>
+<h4>※説明なし</h4>
+<br>
+<br>
+<br>
+<br><img src="gyuutansuteki.webp"><h3>牛タンステーキ炭火焼</h3>
+<h4>丸ごと1本仕入れ、岩塩の板にのせて炭火でやわらかく焼き上げました。</h4>
+
+<h2>～予約について～</h2>
+予約は上記の予約のボタンから予約手続きをお願いいたします。
+
+もしくはこちらから<a href="sub01.html">予約</a>
+
+
+</head>
+<body>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #218838;
+    }
+    .review {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .review strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+</style>
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #review-form {
+        margin-bottom: 20px;
+    }
+    .review {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<h1>口コミを投稿する</h1>
+<div id="review-form">
+    <label for="name">名前:</label>
+    <input type="text" id="name" required><br><br>
+    <label for="review">口コミ:</label><br>
+    <textarea id="review" rows="4" cols="50" required></textarea><br><br>
+    <button onclick="submitReview()">口コミを投稿</button>
+</div>
+
+<h2>口コミ一覧</h2>
+<div id="review-list"></div>
+
+<script>
+    const apiUrl = 'https://script.google.com/macros/s/AKfycbzwEv9VziMpZVnaRbpAyFJKiO7ymoVwBvDmRQ0GKNX6wnZ3zHW_5k2cSv5Qemon_MW1/exec'; // Google Apps ScriptのAPI URLをここに貼り付け
+
+    // 口コミを投稿
+    function submitReview() {
+        const name = document.getElementById('name').value;
+        const review = document.getElementById('review').value;
+
+        if (name === '' || review === '') {
+            alert('名前と口コミを入力してください');
+            return;
+        }
+
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                review: review
+            })
+        }).then(response => response.json())
+          .then(data => {
+              if (data.result === 'success') {
+                  alert('口コミが投稿されました！');
+                  document.getElementById('name').value = '';
+                  document.getElementById('review').value = '';
+                  loadReviews(); // 口コミ一覧を更新
+              } else {
+                  alert('口コミの投稿に失敗しました');
+              }
+          });
+    }
+
+    // 口コミを取得して表示
+    function loadReviews() {
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then(reviews => {
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = ''; // 一度クリア
+
+            reviews.forEach(review => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.classList.add('review');
+                reviewDiv.innerHTML = `
+                    <strong>${review.name}</strong> (${review.date})<br>
+                    <p>${review.review}</p>
+                `;
+                reviewList.appendChild(reviewDiv);
+            });
+        });
+    }
+
+    // ページが読み込まれたら口コミを表示
+    document.addEventListener('DOMContentLoaded', loadReviews);
+</script>
+
+</body>
+</html>

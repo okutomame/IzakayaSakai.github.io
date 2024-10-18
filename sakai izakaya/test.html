@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>口コミ投稿フォーム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .review {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .review strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>口コミを投稿する</h1>
+
+<form id="reviewForm">
+    <label for="name">名前:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="comment">口コミ内容:</label><br>
+    <textarea id="comment" name="comment" rows="4" required></textarea><br><br>
+
+    <button type="submit">投稿</button>
+</form>
+
+<!-- 口コミ一覧表示 -->
+<h2>口コミ一覧</h2>
+<div id="reviews"></div>
+
+<script>
+    // ローカルストレージに口コミを保存するキー
+    const reviewsStorageKey = 'reviews';
+
+    // 口コミを表示する関数
+    function displayReviews() {
+        const reviewsDiv = document.getElementById('reviews');
+        reviewsDiv.innerHTML = ''; // 既存の口コミをクリア
+
+        // ローカルストレージから口コミデータを取得
+        const reviews = JSON.parse(localStorage.getItem(reviewsStorageKey)) || [];
+
+        // 各口コミを表示
+        reviews.forEach(review => {
+            const reviewDiv = document.createElement('div');
+            reviewDiv.classList.add('review');
+            reviewDiv.innerHTML = `<strong>${review.name}</strong><p>${review.comment}</p>`;
+            reviewsDiv.appendChild(reviewDiv);
+        });
+    }
+
+    // 口コミを投稿して保存する処理
+    document.getElementById('reviewForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // デフォルトのフォーム送信を防ぐ
+
+        const name = document.getElementById('name').value;
+        const comment = document.getElementById('comment').value;
+
+        // 新しい口コミを作成
+        const newReview = { name, comment };
+
+        // 既存の口コミを取得
+        const reviews = JSON.parse(localStorage.getItem(reviewsStorageKey)) || [];
+
+        // 新しい口コミを配列に追加
+        reviews.push(newReview);
+
+        // ローカルストレージに口コミを保存
+        localStorage.setItem(reviewsStorageKey, JSON.stringify(reviews));
+
+        // 口コミ一覧を更新
+        displayReviews();
+
+        // フォームをリセット
+        this.reset();
+    });
+
+    // ページが読み込まれたときに、保存された口コミを表示
+    window.onload = function() {
+        displayReviews();
+    };
+</script>
+
+</body>
+</html>
